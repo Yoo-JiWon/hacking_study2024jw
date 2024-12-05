@@ -3,6 +3,7 @@ version: '3'
 services:
   free_shell:
     build: .
+    restart: always
     image: "free_shell"
     ports: 
       - "5103:5103"
