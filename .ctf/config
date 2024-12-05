@@ -1,9 +1,0 @@
-[config]
-url = http://31.220.82.212:7000
-access_token = ctfd_5e28aa92d0e65ff5bd44e427356a06258ca8fc4251e46a2e5133d072b0008ae4
-
-[challenges]
-general = general
-system/nc-sample/ = system/nc-sample/
-system/ssh-sample/ = system/ssh-sample/
-
