@@ -1,6 +1,5 @@
-#!/bin/bash
+#! /bin/bash
+mkdir /var/run/sshd
+/usr/sbin/sshd -D
+/etc/init.d/ssh start
 
-while :
-do
-    su -c "exec socat TCP-LISTEN:5103,reuseaddr,fork EXEC:'/challenge/free_shell.py,stderr'" - challenge;
-done

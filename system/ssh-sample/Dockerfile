@@ -1,22 +1,33 @@
-FROM python:3.12-slim
+FROM debian:12-slim
 
-WORKDIR /challenge
+ENV DEBIAN_FRONTEND noninteractive
 
-RUN apt-get update \
-    && apt-get -y --no-install-recommends install socat \ 
-    && rm -rf /var/lib/apt/lists/*
+# Install dependecies
+RUN apt update && apt install openssh-server sudo gcc -y
 
-COPY src/free_shell.py .
-COPY ./start.sh .
-COPY src/flag .
+# Setup user
+RUN adduser --disabled-password --gecos "" sikk && \
+    echo 'sikk:password' | chpasswd && \
+    ln -sf /dev/null /home/sikk/.bash_history
 
-RUN groupadd challenge \
-    && useradd --no-create-home -d /challenge -g challenge challenge \
-    && chown -R challenge:challenge /challenge/ \
-    && chmod -R 755 /challenge/ \
-    && mv flag flag_$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | head -c 32)
+RUN adduser --disabled-password --gecos "" einstein && \
+    echo 'einstein:79ea9358181884637163' | chpasswd && \
+    ln -sf /dev/null /home/einstein/.bash_history
 
-# ENV LISTEN_PORT 5103
+# Copy challenge files
+COPY --chown=einstein:einstein src/theory.txt /home/einstein/theory.txt
+COPY --chown=einstein:einstein src/learn.c /home/sikk/learn.c
+RUN gcc /home/sikk/learn.c -o /home/sikk/learn && \
+    chown einstein:einstein /home/sikk/learn && \
+    chmod +x /home/sikk/learn && \
+    chmod +s /home/sikk/learn
 
-EXPOSE 5103
-ENTRYPOINT ["./start.sh"]
+# Write flag
+RUN echo "HACK{th30ry_of_r3l4tiv3_p4th5}" > /home/einstein/flag && \
+    chown einstein:einstein /home/einstein/flag && chmod 400 /home/einstein/flag
+
+# Copy starup file to container and run it
+COPY start.sh /root/start.sh
+RUN chmod +x /root/start.sh
+EXPOSE 22
+CMD ["/root/start.sh"]

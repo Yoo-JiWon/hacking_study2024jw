@@ -1,9 +1,9 @@
 version: '3'
 
 services:
-  sikk-ssh-sample:
+  sikk-nc-sample:
     build: .
-    image: "sikk-ssh-sample"
     restart: always
+    image: "sikk-nc-sample"
     ports: 
-      - "7002:22"
+      - "7001:7001"
