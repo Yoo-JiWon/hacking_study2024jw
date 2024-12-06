@@ -7,17 +7,15 @@ value: 0
 type: dynamic
 
 extra:
-    initial: 500
+    initial: 600
     decay: 5
-    minimum: 50
+    minimum: 40
 
-connection_info: "ssh sikk@31.220.82.212 -p 7002(pw: password)"
+connection_info: "ssh iamwldnjs@31.220.82.212 -p 7202(pw: password)"
 
 flags:
     - "HACK{th30ry_of_r3l4tiv3_p4th5}"
 
-requirements:
-    - "free shell"
 
 state: visible
 version: "0.1"

@@ -1,9 +1,9 @@
 version: '3'
 
 services:
-  sikk-ssh-sample:
+  iamwldnjs-ssh-sample:
     build: .
-    image: "sikk-ssh-sample"
+    image: "iamwldnjs-ssh-sample"
     restart: always
     ports: 
-      - "7002:22"
+      - "7202:22"

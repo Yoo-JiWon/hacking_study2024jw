@@ -16,5 +16,5 @@ RUN groupadd challenge \
     && chmod -R 755 /challenge/ \
     && mv flag flag_$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | head -c 32)
 
-EXPOSE 7001
+EXPOSE 7201
 ENTRYPOINT ["./start.sh"]

@@ -1,16 +1,16 @@
 name: "free shell"
-author: "sikk"
+author: "jjang!"
 category: Linux
 description: free shell
 
 value: 0
 type: dynamic
 extra:
-    initial: 300
-    decay: 3
-    minimum: 10
+    initial: 500
+    decay: 5
+    minimum: 100
 
-connection_info: nc 31.220.82.212 7001
+connection_info: nc 31.220.82.212 7201
 
 flags:
     - HACK{D0_y0u_kn0w_sh_0pt10ns?}
